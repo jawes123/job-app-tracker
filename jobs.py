@@ -4,9 +4,21 @@ import tkinter
 # database..?
 # django..?
 
+
 def insert():
     with open('jobs.csv', 'a', encoding='UTF-8') as file:
-        file.write(f'\n{company_field.get()},"{position_field.get()}",{oa_field.get()},{rejected_field.get()},{number_field.get()}')
+        file.write(f'\n"{company_field.get()}","{position_field.get()}","{oa_field.get()}","{rejected_field.get()}","{number_field.get()}"')
+
+    clear()
+
+
+def clear():
+    company_field.delete(0, tkinter.END)
+    position_field.delete(0, tkinter.END)
+    oa_field.delete(0, tkinter.END)
+    rejected_field.delete(0, tkinter.END)
+    number_field.delete(0, tkinter.END)
+
 
 if __name__ == "__main__":
     root = tkinter.Tk()
