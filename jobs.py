@@ -6,7 +6,7 @@ import tkinter
 
 def insert():
     with open('jobs.csv', 'a', encoding='UTF-8') as file:
-        file.write(f'\n{company_field.get()}')
+        file.write(f'\n{company_field.get()},"{position_field.get()}",{oa_field.get()},{rejected_field.get()},{number_field.get()}')
 
 if __name__ == "__main__":
     root = tkinter.Tk()
@@ -32,6 +32,3 @@ if __name__ == "__main__":
     submit = tkinter.Button(root, text="Submit", command=insert).grid(row = 5,column = 0)
 
     root.mainloop()
-
-
-    
