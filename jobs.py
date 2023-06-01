@@ -1,4 +1,5 @@
 import tkinter
+import pandas
 # features:
 # number of companies and number of jobs total
 # database..?
@@ -10,6 +11,19 @@ def insert():
         file.write(f'\n"{company_field.get()}","{position_field.get()}","{oa_field.get()}","{rejected_field.get()}","{number_field.get()}"')
 
     clear()
+
+
+def show_details():
+    jobs = pandas.read_csv('jobs.csv')
+    num_companies = len(jobs.index)
+    num_positions = jobs["number of"].sum()
+    details_label.config(text = f'Total number of companies: {num_companies}\nTotal number of jobs: {num_positions}')
+    details.config(text="Hide Details", command=hide_details)
+
+
+def hide_details():
+    details_label.config(text="")
+    details.config(text="Show Details", command=show_details)
 
 
 def clear():
@@ -42,5 +56,9 @@ if __name__ == "__main__":
     number_field.grid(row = 4,column = 1)
 
     submit = tkinter.Button(root, text="Submit", command=insert).grid(row = 5,column = 0)
+    details = tkinter.Button(root, text="Show Details", command=show_details)
+    details.grid(row = 5,column = 1)
+    details_label = tkinter.Label(root)
+    details_label.grid(row = 6,column = 1)
 
     root.mainloop()
